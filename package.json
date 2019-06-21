@@ -40,6 +40,7 @@
     },
     "scripts": {
         "start": "node tests/demo.js",
+        "start:inspect": "node --inspect tests/demo.js",
         "demo": "nodemon tests/demo.js",
         "test": "eslint --ext .js lib && jest",
         "coverage": "codecov && codacy-coverage"

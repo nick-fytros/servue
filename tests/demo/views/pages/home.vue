@@ -73,7 +73,7 @@ export default {
         master
     },
     mounted: async function(){
-        var response = await axios.get('https://jsonplaceholder.typicode.com/todos/1')
+        const response = await axios.get('https://jsonplaceholder.typicode.com/todos/1')
         response.data.lol = 'test'
         this.info = response.data
         Object.assign(this, {

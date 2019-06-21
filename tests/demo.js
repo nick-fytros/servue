@@ -1,10 +1,10 @@
-const path = require("path")
-const Servue = require("../lib")
-var servue = new Servue(__dirname)
+const path = require('path')
+const Servue = require('../lib')
+const servue = new Servue(__dirname)
 servue.resources = path.resolve(__dirname, 'demo')
-servue.mode = "development"
+servue.mode = 'development'
 
-const express = require("express")
+const express = require('express')
 const app = express()
 
 servue.webpackCommon.module.rules.push({
@@ -17,7 +17,7 @@ servue.webpackCommon.module.rules.push({
 })
 
 servue.precompile('views/pages')
-    .then(()=>{console.log("Servue: precompiled views")})
+    .then(()=>{console.log('Servue: precompiled views')})
 
 app.get('/', async (req, res) => {
     try {
@@ -29,32 +29,32 @@ app.get('/', async (req, res) => {
 })
 
 
-app.listen(2000, () => console.log("listening to port 2000!"))
+app.listen(2000, () => console.log('listening to port 2000!'))
 
 async function render(){
     let data = {
         info: {
-            "userId": 1,
-            "id": 1,
-            "title": "delectus aut autem",
-            "completed": false,
-            "lol": "test"
+            'userId': 1,
+            'id': 1,
+            'title': 'delectus aut autem',
+            'completed': false,
+            'lol': 'test'
         },
-        msg: "Lala!",
-        messageOuter: "Nla Nla",
+        msg: 'Lala!',
+        messageOuter: 'Nla Nla',
     }
 
-    var html = await servue.render("views/pages/home", {
+    const html = await servue.render('views/pages/home', {
         data: {
             info: {
-                "userId": 1,
-                "id": 1,
-                "title": "delectus aut autem",
-                "completed": false,
-                "lol": "test"
+                'userId': 1,
+                'id': 1,
+                'title': 'delectus aut autem',
+                'completed': false,
+                'lol': 'test'
             },
-            msg: "Lala!",
-            messageOuter: "Nla Nla",
+            msg: 'Lala!',
+            messageOuter: 'Nla Nla',
         },
         test: 'lala'
     })

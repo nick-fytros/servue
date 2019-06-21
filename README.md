@@ -86,8 +86,8 @@ await servue.render('home') // renders "home.vue" into html string
 const Servue = require("servue")
 const express = require("express")
 
-var app = express()
-var servue = new Servue()
+const app = express()
+const servue = new Servue()
 
 servue.resources = path.resolve(__dirname, "resources")
 
@@ -103,8 +103,8 @@ app.listen(2000)
 const Servue = require("servue")
 const Koa = require("koa")
 
-var app = new Koa()
-var servue = new Servue()
+const app = new Koa()
+const servue = new Servue()
 
 servue.resources = path.resolve(__dirname, "resources")
 

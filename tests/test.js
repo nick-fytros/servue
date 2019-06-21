@@ -5,16 +5,16 @@ const fs = require('fs')
 const sanitizehtml = require('sanitize-html')
 const htmltag = require('html-tags')
 
-var compPath = path.resolve(__dirname, 'components')
+const compPath = path.resolve(__dirname, 'components')
 
-var genfiles = false
+const genfiles = false
 
 /**
  * Used to sanatize strings for jest comparison (removes script) so that tests aren't brittle
  * @param {string} val 
  */
 function sanitize(val){
-    var htmltags = htmltag.filter(e => e !== 'script')
+    const htmltags = htmltag.filter(e => e !== 'script')
     return sanitizehtml(val, {
         allowedTags: [...htmltags, 'meta', 'link', 'title'],
         allowedAttributes: false
@@ -40,7 +40,7 @@ function readFile(component, value){
  */
 
 describe('render and cache component', ()=>{
-    var renderer = new Renderer()
+    const renderer = new Renderer()
     renderer.resources = compPath
 
     let text = readFile(path.resolve(compPath, 'component'))
@@ -58,7 +58,7 @@ describe('render and cache component', ()=>{
 })
 
 describe('shared renderer', () => {
-    var renderer = new Renderer()
+    const renderer = new Renderer()
     renderer.resources = compPath
     
     test('renders component with data', async () => {
@@ -101,7 +101,7 @@ describe('shared renderer', () => {
     }, 20000)
 
     test('renders component with nodemodules', async () => {
-        var renderer = new Renderer()
+        const renderer = new Renderer()
         renderer.resources = compPath
         renderer.nodemodules = path.resolve(__dirname, '../node_modules')
 
@@ -114,7 +114,7 @@ describe('shared renderer', () => {
     }, 20000)
 
     test('renders component without nodemodules', async () => {
-        var renderer = new Renderer()
+        const renderer = new Renderer()
         renderer.resources = compPath
 
         let text = readFile(path.resolve(compPath, 'component-with-data'))
@@ -126,7 +126,7 @@ describe('shared renderer', () => {
     }, 20000)
 
     test('renders component with template items', async () => {
-        var renderer = new Renderer()
+        const renderer = new Renderer()
         renderer.resources = compPath
         let text = readFile(path.resolve(compPath, 'component-with-template'))
         let rendered = sanitize(await renderer.render('component-with-template'))
@@ -149,13 +149,13 @@ describe('shared renderer', () => {
 
 describe('precompiler', () => {
     test('precompiler compiles entire folder', async ()=>{
-        var renderer = new Renderer()
+        const renderer = new Renderer()
         renderer.resources = path.resolve(__dirname, "components")
 
         await renderer.precompile('precompile')
     }, 20000)
     test('precompiler fails', async ()=>{
-        var renderer = new Renderer()
+        const renderer = new Renderer()
         renderer.resources = path.resolve(__dirname, "components")
 
         try {
@@ -169,7 +169,7 @@ describe('precompiler', () => {
 
 describe('renderer with modified webpack', () => {
     test('renders component with preprocessor', async () => {
-        var renderer = new Renderer()
+        const renderer = new Renderer()
         renderer.resources = path.resolve(__dirname, "components")
         renderer.nodemodules = path.resolve(__dirname,'../node_modules')
     
